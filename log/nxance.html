@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nxance: investment analytics where every number is computed · Bhaskar Pandey</title><meta name="description" content="Co-founder and CTO. Built the platform end to end: a statement reader tested on 1,000 statements, seven calculation engines, an in-house AI explainer and the security around them.">
+<meta property="og:title" content="Nxance: investment analytics where every number is computed · Bhaskar Pandey"><meta property="og:description" content="Co-founder and CTO. Built the platform end to end: a statement reader tested on 1,000 statements, seven calculation engines, an in-house AI explainer and the security around them.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23b9432a' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../styles.css?v=96acf155"><script>
+(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+function toggleTheme(){var d=document.documentElement;var dark=d.getAttribute('data-theme')==='dark'||(!d.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme: dark)').matches);var n=dark?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}}
+</script></head>
+<body><div class="wrap">
+<header class="top"><a class="brand" href="../index.html">Bhaskar Pandey <span class="mono">· Logbook</span></a>
+<nav class="nav"><a class="mono" href="../index.html#route">Route</a><a class="mono" href="../books.html">Books</a>
+<button class="toggle" onclick="toggleTheme()" aria-label="Switch light or dark">Light / Dark</button></nav></header>
+<article class="entry">
+<span class="mono">Log entry 15 of 25 · Apr 2026 – Present</span>
+<h1>Nxance: investment analytics where every number is computed</h1><p class="line">Co-founder and CTO. Built the platform end to end: a statement reader tested on 1,000 statements, seven calculation engines, an in-house AI explainer and the security around them.</p>
+<div class="facts"><div><span class="mono">When</span><b>Apr 2026 – Present</b></div><div><span class="mono">Where</span><b>India, remote</b></div>
+<div><span class="mono">Status</span><b>Pre-launch</b></div></div>
+</article>
+<section class="blk"><h2>The situation</h2><p>India has over 21 crore demat accounts and fewer than 1,000 SEBI-registered investment advisers. Most people hold mutual funds without knowing what they own, how much their funds overlap, or whether their goal is on track. Nxance, built by Ohshn Intelligence LLP with four founders, is a financial operating system with AI built in. It starts with portfolio analysis for mutual fund distributors, registered investment advisers and institutions, and will open to retail investors for self-analysis: set a goal, see what you own, reduce overlap, and see how the portfolio holds up when markets turn volatile. It is analytics and education: no personalised advice and no trades. As co-founder and CTO I designed and wrote the platform.</p></section>
+<section class="blk"><h2>What I did</h2><ul><li>Statement reader: reads CAMS and KFintech consolidated account statements as PDFs (including password-protected ones), scanned PDFs, phone photos, CSV and Excel. Table rows are rebuilt from glyph positions with PDFium, and our own OCR pipeline on Tesseract handles tinted bands, near-blank pages and damaged fund codes.</li><li>Tested the reader on a 1,000-statement corpus with an answer key for each: on text PDFs 11,207 of 11,207 holdings and 314,854 of 314,854 cash flows read right. On photos and scans every holding is read right, left blank or blocked for the person to check. No silent errors.</li><li>Seven calculation engines: Health Check (allocation, HHI concentration, look-through exposure, true XIRR from statement cash flows, regular-vs-direct plan mix, goal maths and a 0-100 score with hard caps), Construction (a glide-path mix across equity, debt, gold and cash), Rebalance (5/25 drift bands), SIP redesign, a scenario sandbox, and behaviour and progress checks.</li><li>A ledger for every figure: each number is stored with its formula version and inputs. Anything that cannot be computed honestly is returned as not computed, with the reason, and the product says so.</li><li>Nxance AI explains reports without sending anything to an outside AI service: intent routing, retrieval of the person&#x27;s own results, and Number Guard, which checks every number in an answer against the ledger. A 200-case evaluation set covers grounding, disclaimers, Hinglish and prompt injection.</li><li>Market data: a dated AMFI NAV store, holdings valued at the latest NAV, and fund quality ranked against each fund&#x27;s own category.</li><li>Architecture: a Next.js gateway on Cloudflare Workers with a D1 database (26 migrations) and a stateless Python FastAPI intelligence service reached by HMAC-signed requests. The service never learns who the user is.</li><li>Security and privacy: email-code, Google and Apple sign-in, a second factor for admins, field encryption at rest for holdings, reports and chat, statement files and passwords used once in memory and never stored, data export, account deletion with a 7-day cooling-off, audit logs and rate limits, all checked in a pre-launch security review.</li><li>Engineering discipline: CI with type checks, 52 Node test suites and 709 Python tests behind a 90% coverage gate, secret scanning, dependency and licence audits, WCAG 2.2 AA accessibility checks, encrypted backups with restore drills, a deployment runbook and an investor demo mode.</li><li>Before this, a first phase (closed July 2026): a FastAPI prototype with a five-layer intelligence stack, models trained on synthetic India data, a Flutter Android app and a web portal.</li></ul></section>
+<section class="blk"><h2>By the numbers</h2><div class="stats"><div class="stat"><b>1,000</b><span>statements in the test corpus</span></div><div class="stat"><b>11,207 / 11,207</b><span>holdings read right from text PDFs</span></div><div class="stat"><b>0</b><span>silent errors on photos and scans</span></div><div class="stat"><b>7</b><span>calculation engines</span></div><div class="stat"><b>709</b><span>service tests, 93% coverage</span></div><div class="stat"><b>219</b><span>commits since Sep 2026</span></div></div></section>
+<section class="blk"><h2>What I carried forward</h2><p>AI should explain the numbers, never produce them. Nxance is where I proved that rule in production-grade code, and it now runs through all my product work.</p></section>
+<section class="blk"><h2>Tools and methods</h2><div class="chips"><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Cloudflare Workers</span><span class="chip">D1 / SQLite</span><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">PDFium</span><span class="chip">Tesseract OCR</span><span class="chip">Flutter</span><span class="chip">GitHub Actions</span></div></section>
+
+<nav class="pager">
+<a data-dir="back" href="perfhr.html"><span class="mono">← Previous stop</span><br>PerfHR: performance and hiring systems that run every week</a>
+<a class="r" href="open-source.html"><span class="mono">Next stop →</span><br>Open-source AI tooling</a>
+</nav>
+<p><a class="mono" data-dir="back" href="../index.html#route">↑ Back to the full route</a></p>
+<footer class="foot"><span class="mono">Bhaskar Pandey · India (IST) · Remote worldwide</span>
+<span class="mono"><a href="mailto:bhaskarauthor@gmail.com">bhaskarauthor@gmail.com</a> · <a href="https://www.linkedin.com/in/bhaskar-pandey-a9b23018b/">LinkedIn</a> · <a href="https://github.com/bhaskarpandey2708">GitHub</a></span></footer>
+</div><script>
+(function(){
+var rm=false;try{rm=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+document.documentElement.classList.add('js');
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;try{sessionStorage.setItem('dir',a.getAttribute('data-dir')||'fwd')}catch(_){}},true);
+window.addEventListener('pagereveal',function(e){try{if(e.viewTransition){e.viewTransition.types.add(sessionStorage.getItem('dir')||'fwd')}}catch(_){}});
+var routes=[].slice.call(document.querySelectorAll('.route:not(.metro)'));
+if(!routes.length)return;
+var hud=document.createElement('div');hud.className='hud';hud.innerHTML='<i class="dot"></i><b></b><span></span><em class="pct"></em>';document.body.appendChild(hud);
+var NS='http://www.w3.org/2000/svg',all=[];
+routes.forEach(function(route){
+ route.classList.add('road-on');
+ var svg=document.createElementNS(NS,'svg');svg.setAttribute('class','road');svg.setAttribute('aria-hidden','true');route.insertBefore(svg,route.firstChild);
+ var base=document.createElementNS(NS,'path');base.setAttribute('class','road-base');
+ var lane=document.createElementNS(NS,'path');lane.setAttribute('class','road-lane');
+ var walked=document.createElementNS(NS,'path');walked.setAttribute('class','road-walked');
+ var g=document.createElementNS(NS,'g');g.setAttribute('class','walker');
+ g.innerHTML='<circle class="halo" r="14"/><circle class="body" r="10"/><path class="arrow" d="M-4,-4 L6,0 L-4,4 Z"/>';
+ svg.appendChild(base);svg.appendChild(lane);svg.appendChild(walked);svg.appendChild(g);
+ var stops=[].slice.call(route.querySelectorAll('.stop'));
+ var st={route:route,svg:svg,paths:[base,lane,walked],walked:walked,g:g,arrow:g.querySelector('.arrow'),stops:stops,len:0,last:0,dir:1};
+ all.push(st);
+ if('IntersectionObserver' in window&&!rm){
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){en.target.classList.toggle('in',en.isIntersecting)})},{rootMargin:'0px 0px -10% 0px',threshold:0.12});
+  stops.forEach(function(s){io.observe(s)});[].forEach.call(route.querySelectorAll('.leg'),function(l){io.observe(l)});
+ }else{stops.forEach(function(s){s.classList.add('in')});[].forEach.call(route.querySelectorAll('.leg'),function(l){l.classList.add('in')})}
+});
+function lenAtY(st,y){var lo=0,hi=st.len;for(var k=0;k<24;k++){var m=(lo+hi)/2;if(st.walked.getPointAtLength(m).y<y)lo=m;else hi=m}return lo}
+function build(){
+ all.forEach(function(st){
+  var w=st.route.clientWidth,h=st.route.offsetHeight;
+  st.svg.setAttribute('width',w);st.svg.setAttribute('height',h);st.svg.setAttribute('viewBox','0 0 '+w+' '+h);
+  var mobile=w<720,cx=mobile?10:w/2,amp=mobile?0:Math.min(90,w*.08);
+  var pts=[{x:cx,y:0}];st.stops.forEach(function(s){pts.push({x:cx,y:s.offsetTop+30})});pts.push({x:cx,y:h});
+  var d='M'+pts[0].x+','+pts[0].y;
+  for(var i=1;i<pts.length;i++){var a=pts[i-1],b=pts[i],side=(i%2?1:-1)*amp,dy=b.y-a.y;
+   d+=' C'+(a.x+side)+','+(a.y+dy*.35)+' '+(b.x+side)+','+(b.y-dy*.35)+' '+b.x+','+b.y}
+  st.paths.forEach(function(p){p.setAttribute('d',d)});
+  st.len=st.walked.getTotalLength();st.walked.style.strokeDasharray=st.len+' '+st.len;
+ });
+ update();
+}
+var ticking=false;
+function update(){
+ ticking=false;var mark=innerHeight*.58,cur=null,active=null;
+ all.forEach(function(st){
+  var r=st.route.getBoundingClientRect(),h=st.route.offsetHeight;
+  var y=Math.max(0,Math.min(h,mark-r.top));
+  var l=st.len?lenAtY(st,y):0;
+  if(Math.abs(l-st.last)>.5){st.dir=l<st.last?-1:1}st.last=l;
+  st.walked.style.strokeDashoffset=(st.len-l);
+  var p=st.walked.getPointAtLength(l),q=st.walked.getPointAtLength(Math.min(st.len,l+3));
+  var ang=Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI+(st.dir<0?180:0);
+  st.g.setAttribute('transform','translate('+p.x+','+p.y+')');st.arrow.setAttribute('transform','rotate('+ang+')');
+  st.route.classList.toggle('back',st.dir<0);
+  var last=null;st.stops.forEach(function(s){var ps=s.offsetTop+30<=y;s.classList.toggle('passed',ps);if(ps)last=s});
+  if(r.top<mark&&r.bottom>mark){active=st;cur=last}
+ });
+ if(active&&cur){hud.classList.add('show');hud.querySelector('b').textContent=cur.getAttribute('data-when')||'';
+  hud.querySelector('span').textContent=cur.getAttribute('data-title')||'';
+  var n=active.stops.indexOf(cur)+1;hud.querySelector('.pct').textContent=n+'/'+active.stops.length}
+ else hud.classList.remove('show');
+}
+addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(update)}},{passive:true});
+var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(build,120)});
+document.addEventListener('toggle',function(){setTimeout(build,50)},true);
+build();addEventListener('load',build);try{document.fonts.ready.then(build)}catch(e){}
+})();
+</script></body></html>
